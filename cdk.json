@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/aws-cdk-github-pipeline.ts",
+  "app": "npx ts-node --prefer-ts-exts infrastructure/app.ts",
   "watch": {
     "include": [
       "**"
@@ -17,6 +17,15 @@
     ]
   },
   "context": {
+    "appName": "cdk-github-actions-stack",
+    "dev": {
+      "stageModifier": "dev",
+      "dbHost": "host.dev"
+    },
+    "prod": {
+      "stageModifier": "prod",
+      "dbHost": "host.prod"
+    },
     "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
     "@aws-cdk/core:checkSecretUsage": true,
     "@aws-cdk/core:target-partitions": [
