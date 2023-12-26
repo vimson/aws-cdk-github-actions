@@ -1,5 +1,5 @@
 const handler = async (event: unknown): Promise<unknown> => {
-  const test = 12;
+  const test;
 
   const response = {
     statusCode: 200,
