@@ -10,7 +10,7 @@ on:
       - main
 
 jobs:
-  aws_cdk:
+  deploy_aws_cdk_app_prod:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -25,8 +25,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: 'us-west-1'
       - name: Install dependencies
-        run: yarn
+        run: npm install
       - name: Synth stack
-        run: yarn cdk synth
+        run: cdk synth
       - name: Deploy stack
-        run: yarn cdk deploy --all --require-approval never
+        run: cdk deploy -c stage=prod --require-approval never
