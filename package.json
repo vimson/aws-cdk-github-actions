@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint src/**/*.ts --max-warnings=0",
     "lint-fix": "eslint --fix src/**/*.ts",
     "pretty": "prettier --write 'src/**/*.ts'",
     "prepare": "husky install",
