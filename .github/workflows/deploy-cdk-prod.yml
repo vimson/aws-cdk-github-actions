@@ -15,18 +15,26 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+      
       - uses: actions/setup-node@v2
         with:
           node-version: "20"
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Install AWS CDK
+        run: npm i -g aws-cdk
+
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: 'us-west-1'
-      - name: Install dependencies
-        run: npm install
+      
       - name: Synth stack
         run: cdk synth
+      
       - name: Deploy stack
         run: cdk deploy -c stage=prod --require-approval never
